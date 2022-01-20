@@ -1,0 +1,88 @@
+/* @Author  : Sachin Shukla
+*  @Country : INDIA 
+*/
+#include<bits/stdc++.h>
+using namespace std;
+#define fastio() ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define MOD 1000000007
+#define MOD1 998244353
+#define INF 1e18
+#define next "\n"
+#define pb push_back
+#define ppb pop_back
+#define ff first
+#define ss second
+#define PI 3.141592653589793238462
+#define set_bits __builtin_popcountll
+#define sz(x) ((int)(x).size())
+#define all(x) (x).begin(), (x).end()
+#define rep(i,a,b) for(int i=a;i<b;i++)
+#define ppi pair<int,pair<int,int>>
+#define pi  pair<int,int>
+#define nline "\n"
+#define all(x) (x).begin(), (x).end()
+#define sum(a)     ( accumulate ((a).begin(), (a).end(), 0ll))
+#define mine(a)    (*min_element((a).begin(), (a).end()))
+#define maxe(a)    (*max_element((a).begin(), (a).end()))
+#define mini(a)    ( min_element((a).begin(), (a).end()) - (a).begin())
+#define maxi(a)    ( max_element((a).begin(), (a).end()) - (a).begin())
+#define lowb(a, x) ( lower_bound((a).begin(), (a).end(), (x)) - (a).begin())
+#define uppb(a, x) ( upper_bound((a).begin(), (a).end(), (x)) - (a).begin())
+#define bs(x,t)    (binary_search(x.begin(),x.end(),t)) // returns boolean value if t is present in array                                                
+#define found(s,x)     ( s.find(x)!=s.end())
+#define not_found(s,x) (s.find(x)==s.end())
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef long double lld;
+
+
+/*****************************************************************************************/
+/*************************************** YOUR CODE ***************************************/
+string rec;
+ll bc,sc,cc,bp,sp,cp,amt,br,sr,cr;
+
+bool good(ll count){
+    
+    ll p = max(0ll,br*count - bc);
+    ll q = max(0ll,sr*count - sc);
+    ll r = max(0ll,cr*count - cc);
+    //cout<<p<<" "<<q<<" "<<r<<"\n";
+    
+    ll curr = p*bp + q*sp + r*cp;
+    return amt>=curr;
+}
+
+void solve() {
+ 
+ cin>>rec>>bc>>sc>>cc>>bp>>sp>>cp>>amt;
+  
+ br = 0 , sr = 0,cr = 0;
+ for(auto x:rec){
+    if(x=='B') br++;
+    else if(x=='S') sr++;
+    else cr++;
+ }
+
+ ll l = 0;
+ ll r = 1e15;
+
+ while(r>l+1){
+    ll mid = (l+r)/2;
+    if(good(mid)) l = mid;
+    else r = mid;
+ }
+
+ cout<<l<<"\n"; 
+
+}
+ 
+
+
+int main() {
+ fastio();
+ int t;   
+ t=1;
+ //cin>>t;
+ while(t--) solve();
+}
